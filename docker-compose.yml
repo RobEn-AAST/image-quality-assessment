@@ -1,0 +1,9 @@
+services:
+  image_quality_assesment:
+    build:
+      context: .
+      dockerfile: Dockerfile.cpu
+    command: python -m evaluater.predict --base-model-name MobileNet --weights-file /src/weights.hdf5 --image-source /src/tests/test_images
+    volumes:
+      - ./src/tests/test_images:/src/tests/test_images
+      - ./models/MobileNet/weights_mobilenet_technical_0.11.hdf5:/src/weights.hdf5
